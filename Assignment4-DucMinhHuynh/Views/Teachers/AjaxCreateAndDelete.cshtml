@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "AjaxCreateAndDelete";
+}
+
+<h2>Ajax Create And Delete the teacher</h2>
+
+<button id="create_ajax">Create Teacher Using Ajax</button>
+<button id="delete_ajax">Create Teacher Using Ajax</button>
+
+
+<script>
+    const btn_create_ajax = document.getElementById("create_ajax");
+    const btn_delete_ajax = document.getElementById("delete_ajax");
+    const url_create = 'http://localhost:50604/Teachers/Create';
+    const url_delete = 'http://localhost:50604/Teachers/Delete/1';
+
+    btn_create_ajax.addEventListener("click", function (event){
+        console.log("Create clicked")
+        const data = {
+            Teacherfname : "Julia",
+            Teacherlname : "Nghuyen",
+            Employeenumber: "T102",
+            hiredate : "2022-01-12",
+            salary : 10000.22
+        };
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url_create);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    window.location.href = "http://localhost:50604/Teachers/List";
+                } else {
+                    window.location.reload();
+                    console.error('There was a problem with the request.');
+                }
+            }
+        };
+        xhr.send(JSON.stringify(data));
+    })
+
+    btn_delete_ajax.addEventListener("click", function (event){
+        console.log("Delete clicked")
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url_delete);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    window.location.href = "http://localhost:50604/Teachers/List";
+                } else {
+                    window.location.reload();
+                    console.error('There was a problem with the request.');
+                }
+            }
+        };
+        xhr.send();
+    })
+</script>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Assignment4_DucMinhHuynh.Models.Teacher> 
+@{
+    ViewBag.Title = "List";
+}
+
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(1, 300px);
+        gap: 1px;
+    }
+
+    .grid-item {
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+        width: 300px;
+    }
+
+    input[type="submit"] {
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+</style>
+<h2>List of Teacher Name</h2>
+<button><a href="./CreateTeacher">Add Another Teacher</a></button>
+<div class="grid-container">
+    <div class="grid-item">Teacher Name </div> 
+    @foreach (var teacher in Model)
+    {
+        <div class="grid-item"><a href="./Show/@teacher.teacherid">@teacher.teacherfname @teacher.teacherlname</a></div>
+    }
+
+</div>
+

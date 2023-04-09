@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "CreateTeacher";
+}
+
+<h2>CreateTeacher</h2>
+
+<form method="POST" action="/Teachers/Create">
+    <label for="Teacherfname">First Name:</label>
+    <input type="text" id="Teacherfname" name="Teacherfname"><br><br>
+
+    <label for="Teacherlname">Last Name:</label>
+    <input type="text" id="Teacherlname" name="Teacherlname"><br><br>
+
+    <label for="Employeenumber">Employee Number:</label>
+    <input type="text" id="Employeenumber" name="Employeenumber"><br><br>
+
+    <label for="hiredate">Date of Hire:</label>
+    <input type="date" id="hiredate" name="hiredate"><br><br>
+
+    <label for="salary">Salary:</label>
+    <input type="number" id="salary" name="salary"><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+<style>
+    form {
+        margin: 20px auto;
+        width: 400px;
+        font-family: Arial, sans-serif;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    textarea {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #4CAF50;
+    }
+</style>
+
+<script>
+    const form = document.querySelector('form');
+    const TeacherfnameInput = form.querySelector('#Teacherfname');
+    const TeacherlnameInput = form.querySelector('#Teacherlname');
+    const EmployeenumberInput = form.querySelector('#Employeenumber');
+    const salaryInput = form.querySelector('#salary');
+    const hiredateInput = form.querySelector('#hiredate');
+
+    form.addEventListener('submit', function (event) {
+        // Prevent the form from submitting if any input is invalid
+        if (!TeacherfnameInputValid() || !TeacherlnameInputValid() || !EmployeenumberInputValid() || !salaryInputValid() || !hiredateInputValid() ) {
+            event.preventDefault();
+        }
+    });
+    function TeacherfnameInputValid() {
+        // Check that the teachfname input is not empty
+        if (TeacherfnameInput.value.trim() === '') {
+            TeacherfnameInput.focus();
+            return false;
+        }
+        return true;
+    }
+    function TeacherlnameInputValid() {
+        // Check that the teachlname input is not empty
+        if (TeacherlnameInput.value.trim() === '') {
+            TeacherlnameInput.focus();
+            return false;
+        }
+        return true;
+    }
+    function EmployeenumberInputValid() {
+        // Check that the employee input is not empty
+        if (EmployeenumberInput.value.trim() === '') {
+            EmployeenumberInput.focus();
+            return false;
+        }
+        return true;
+    }
+    function hiredateInputValid() {
+        // Check that the hiredate input is not empty
+        if (hiredateInput.value.trim() === '' || hiredateInput.value === null) {
+            hiredateInput.focus();
+            return false;
+        }
+        return true;
+    }
+    function salaryInputValid() {
+        // Check that the salary input is not empty
+        if (salaryInput.value.trim() === '') {
+            salaryInput.focus();
+            return false;
+        } else if (isNaN(salaryInput.value.trim())) {
+            salaryInput.focus();
+            return false;
+            return true;
+        }
+        return true;
+    }
+
+
+</script>
