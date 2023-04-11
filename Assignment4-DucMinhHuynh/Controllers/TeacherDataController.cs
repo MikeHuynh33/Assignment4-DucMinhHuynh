@@ -180,7 +180,7 @@ namespace Assignment4_DucMinhHuynh.Controllers
             //create query cmd.
             MySqlCommand cmd = con.CreateCommand();
             // implementing SQL in command. Delete teacherId and ClassID which has reference to teacherId.
-            cmd.CommandText = "Delete t.*, cl.* from teachers t \r\n Right Join classes cl On cl.teacherid = t.teacherid \r\n WHERE t.teacherid = @id";
+            cmd.CommandText = "Delete t.*, cl.* from teachers t \r\n Left Join classes cl On cl.teacherid = t.teacherid \r\n WHERE t.teacherid = @id";
             // SQL validation for Input QUERY.
             cmd.Parameters.AddWithValue("@id", id);
             // extract data from data server.
